@@ -1,0 +1,52 @@
+# Desktop packaging. Run `npm run desktop:dist` (builds dist-desktop/ first).
+appId: com.ziwei.desktop
+productName: 紫微斗数
+electronVersion: 45.2.3
+directories:
+  app: dist-desktop/app         # only the Electron main process; no node_modules
+  output: dist-desktop/release
+  buildResources: electron/build
+npmRebuild: false
+asar: true
+files:
+  - "**/*"
+  - "!**/node_modules/**"       # the main process has no dependencies
+# The Next server (with onnxruntime-node's .node/.dylib) and the bundled data are copied to
+# Contents/Resources/{server,data} by afterPack, outside app.asar, so native files load from disk.
+# asarUnpack only guards against a native file ever ending up inside app.asar.
+asarUnpack:
+  - "**/*.node"
+  - "**/*.dylib"
+  - "**/*.dll"
+afterPack: scripts/desktop/after-pack.cjs
+mac:
+  target:
+    - target: dmg
+      arch: [arm64]
+  category: public.app-category.lifestyle
+  # No Developer ID signing (see docs/desktop-plan.md). "-" = ad-hoc signature only, so Apple
+  # silicon sees one consistent bundle and Gatekeeper reports "unverified developer", not "damaged".
+  identity: "-"
+  hardenedRuntime: false
+  minimumSystemVersion: "12.0"
+dmg:
+  artifactName: ziwei-${version}-mac-${arch}.${ext}
+  title: 紫微斗数 ${version}
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  # 没有代码签名证书（SmartScreen 会提示「已保护你的电脑」，安装教程写「更多信息 › 仍要运行」）。
+  # 不改 exe 的图标和版本信息：这一步需要 Wine，在 Mac 上打包时跳过。
+  signAndEditExecutable: false
+nsis:
+  artifactName: ziwei-${version}-win-${arch}-setup.${ext}
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 紫微斗数
+  installerLanguages: [zh_CN]
+  language: "2052"
+  unicode: true

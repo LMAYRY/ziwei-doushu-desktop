@@ -1,0 +1,35 @@
+/* 设置页：单栏表单，沿用纸面发丝线风格 */
+.head { padding: 44px 0 26px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--sans); font-size: 14px; color: var(--ink-3); margin-bottom: 12px; }
+.h1 { font-size: 34px; line-height: 1.3; font-weight: 700; }
+.lead { margin-top: 12px; max-width: 40em; font-size: 16px; line-height: 1.85; color: var(--ink-2); }
+
+.body { max-width: 36em; padding: 28px 0 64px; margin: 0; }
+.row { margin: 0 0 20px; padding: 0; border: 0; min-width: 0; }
+.label { display: block; margin-bottom: 6px; padding: 0; font-family: var(--sans); font-size: 13px; color: var(--ink-2); }
+.hint { margin: 6px 0 0; font-family: var(--sans); font-size: 12px; line-height: 1.7; color: var(--ink-3); }
+.hint a { color: var(--zhu-deep); text-decoration: underline; text-underline-offset: 2px; }
+.providers { display: flex; flex-wrap: wrap; }
+.keyRow { display: flex; gap: 8px; }
+.keyRow :global(.field) { flex: 1; min-width: 0; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.skip { margin-left: auto; }
+
+.status { margin-top: 18px; padding: 12px 16px; border-left: 2px solid var(--rule-strong); background: var(--paper-2); font-family: var(--sans); font-size: 14px; line-height: 1.7; }
+.ok { border-left-color: var(--lu); }
+.bad { border-left-color: var(--zhu); color: var(--zhu-deep); }
+
+.note { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: 13px; line-height: 1.8; color: var(--ink-3); }
+.note li { margin-top: 4px; }
+
+.section { border-top: 1px solid var(--rule); }
+.h2 { margin-bottom: 18px; font-size: 22px; line-height: 1.4; font-weight: 700; }
+.machine { display: inline-block; font-family: ui-monospace, Menlo, monospace; font-size: 15px; letter-spacing: .04em; user-select: all; }
+
+@media (max-width: 760px) {
+  .h1 { font-size: 26px; }
+  .skip { margin-left: 0; }
+}
+.buy { margin: 0; font-family: var(--sans); font-size: 14px; line-height: 1.8; color: var(--ink-2); }
+.qr { display: block; margin: 4px 0 10px; padding: 10px; background: #fff; border-radius: 6px; }

@@ -1,0 +1,49 @@
+{
+  "name": "ziwei-master",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "desktop:build": "node scripts/desktop/build.mjs",
+    "desktop:start": "electron dist-desktop/app",
+    "desktop:dist": "node scripts/desktop/build.mjs && electron-builder --mac --arm64",
+    "desktop:dist:win": "node scripts/desktop/build.mjs --platform win32 && electron-builder --win --x64",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx scripts/regression/pan-integrity.test.ts && tsx scripts/regression/dst-cn.test.ts && tsx scripts/regression/clock-adjust.test.ts && tsx scripts/regression/sizhu-lichun-boundary.test.ts && tsx scripts/regression/hongluan-tianxi.test.ts && tsx scripts/regression/famous-hour-consistency.test.ts && tsx scripts/regression/iztro-time-index-boundary.test.ts && tsx scripts/regression/solar-date-exists.test.ts && tsx scripts/regression/gender-validation.test.ts && tsx scripts/regression/natal-dual-sihua-same-palace.test.ts && tsx scripts/regression/neutral-naming.test.ts && tsx scripts/regression/leap-policy-validation.test.ts && tsx scripts/regression/form-true-solar-day.test.ts && tsx scripts/regression/birthform-birthinfo-consistency.test.ts && tsx scripts/regression/heming-refresh.test.ts && tsx scripts/regression/heming-stream.test.ts && tsx scripts/regression/patterns-sihua-bonus.test.ts && tsx scripts/regression/wordpiece-tokenizer.test.ts && tsx scripts/regression/npy-reader.test.ts && tsx scripts/regression/vector-search.test.ts && tsx scripts/regression/ai-provider.test.ts && tsx scripts/regression/library-import.test.ts && tsx scripts/regression/checklists.test.ts && tsx scripts/regression/citation.test.ts && tsx scripts/regression/chat-store.test.ts && tsx scripts/regression/feihua.test.ts && tsx scripts/regression/sealed.test.ts && tsx scripts/regression/libraries.test.ts",
+    "model:download": "node scripts/download-model.mjs",
+    "library:download": "node scripts/download-library.mjs",
+    "library:pack": "node scripts/desktop/pack-library.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@types/pg": "^8.20.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.0",
+    "html2canvas": "^1.4.1",
+    "ioredis": "^5.10.1",
+    "iztro": "^2.5.8",
+    "lunar-javascript": "^1.7.3",
+    "next": "^16.4.6",
+    "onnxruntime-node": "1.19.2",
+    "pdfjs-dist": "6.4.299",
+    "pg": "^8.20.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.0",
+    "electron": "45.2.3",
+    "electron-builder": "26.18.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5"
+  }
+}

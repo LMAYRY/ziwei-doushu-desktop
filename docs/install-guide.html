@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>紫微斗数 安装教程</title>
+<style>
+:root {
+  --bg: #f7f4ee; --paper: #fffdf8; --ink: #222; --ink-2: #555; --ink-3: #888; --rule: #e3ddd0;
+  --zhu: #b23a2b; --zhu-wash: #f6e7e2; --mac: #ececec; --win: #0b5cad;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1b1a18; --paper: #24221f; --ink: #eee; --ink-2: #bbb; --ink-3: #888; --rule: #3a3732; --zhu: #e0715f; --zhu-wash: #3a2622; --mac: #3a3a3a; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.85 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 80px; }
+h1 { font-size: 30px; margin: 0 0 4px; }
+.sub { color: var(--ink-3); margin: 0 0 24px; }
+h2 { margin: 48px 0 8px; padding-bottom: 6px; border-bottom: 2px solid var(--zhu); font-size: 22px; }
+h3 { margin: 28px 0 6px; font-size: 18px; }
+nav.toc { background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 18px; }
+nav.toc a { color: var(--zhu); margin-right: 18px; }
+ol.steps { padding-left: 1.4em; }
+ol.steps > li { margin: 18px 0; }
+.note { background: var(--zhu-wash); border-left: 3px solid var(--zhu); padding: 10px 14px; border-radius: 4px; margin: 14px 0; }
+code { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 6px; font-size: 14px; word-break: break-all; }
+.hl { outline: 3px solid var(--zhu); outline-offset: 2px; }
+figure { margin: 12px 0; }
+figcaption { color: var(--ink-3); font-size: 13px; margin-top: 4px; }
+/* 示意图：只画出关键元素，不是真实截图 */
+.mac-dialog { width: 300px; max-width: 100%; margin: 0 auto; background: var(--mac); border-radius: 12px; padding: 20px 18px 16px; text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,.18); color: var(--ink); }
+.mac-dialog .icon { width: 52px; height: 52px; margin: 0 auto 10px; border-radius: 12px; background: linear-gradient(135deg, #c9a46a, #8a5a2b); }
+.mac-dialog b { display: block; font-size: 15px; margin-bottom: 6px; }
+.mac-dialog p { font-size: 12px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.6; }
+.mac-dialog .btn { display: block; padding: 5px; margin-top: 7px; border-radius: 7px; background: var(--paper); font-size: 13px; }
+.mac-dialog .btn.primary { background: #2a6ff0; color: #fff; }
+.settings { max-width: 520px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; display: flex; overflow: hidden; font-size: 13px; }
+.settings .side { width: 150px; background: var(--mac); padding: 12px 8px; color: var(--ink-2); }
+.settings .side div { padding: 4px 8px; border-radius: 6px; }
+.settings .side .on { background: #2a6ff0; color: #fff; }
+.settings .body { flex: 1; padding: 14px 16px; }
+.settings .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.settings .mini { padding: 3px 10px; border-radius: 6px; background: var(--mac); white-space: nowrap; }
+.dmg { max-width: 420px; margin: 0 auto; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 26px 20px; display: flex; align-items: center; justify-content: space-around; font-size: 13px; }
+.dmg .app, .dmg .folder { text-align: center; }
+.dmg .app i, .dmg .folder i { display: block; width: 60px; height: 60px; margin: 0 auto 6px; border-radius: 14px; }
+.dmg .app i { background: linear-gradient(135deg, #c9a46a, #8a5a2b); }
+.dmg .folder i { background: #6aa7e8; border-radius: 8px; }
+.dmg .arrow { font-size: 30px; color: var(--zhu); }
+.menu { width: 200px; margin: 0 auto; background: var(--mac); border-radius: 8px; padding: 6px; font-size: 13px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.menu div { padding: 3px 10px; border-radius: 5px; }
+.menu .on { background: #2a6ff0; color: #fff; }
+.menu hr { border: 0; border-top: 1px solid var(--rule); margin: 4px 0; }
+.smartscreen { max-width: 460px; margin: 0 auto; background: var(--win); color: #fff; padding: 22px 24px 18px; font-size: 13px; }
+.smartscreen b { display: block; font-size: 20px; font-weight: 400; margin-bottom: 10px; }
+.smartscreen u { color: #fff; }
+.smartscreen .foot { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+.smartscreen .foot span { border: 1px solid #fff; padding: 4px 18px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .two { grid-template-columns: 1fr; } .settings .side { display: none; } }
+@media print { body { background: #fff; } h2 { break-before: page; } figure { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+<h1>紫微斗数 安装教程</h1>
+<p class="sub">适用于 Mac（Apple 芯片，macOS 12 及以上）和 Windows 10 / 11（64 位）。</p>
+<nav class="toc"><a href="#mac">Mac 安装</a><a href="#win">Windows 安装</a><a href="#first">第一次使用</a><a href="#faq">遇到问题</a></nav>
+
+<div class="note">本软件没有购买苹果和微软的开发者签名，所以第一次打开时系统会拦一下，按下面的步骤放行一次就好，以后正常双击打开。图中是示意图，只画出了要点的按钮，实际界面会因系统版本略有不同。</div>
+
+<h2 id="mac">Mac 安装</h2>
+<p>先确认电脑是 Apple 芯片：点左上角苹果图标 › 关于本机，「芯片」一栏写着 Apple M1、M2、M3、M4 等即可。Intel 芯片的 Mac 不能使用。</p>
+
+<ol class="steps">
+<li><strong>安装</strong>：双击下载的 <code>ziwei-0.1.0-mac-arm64.dmg</code>，在打开的窗口里把「紫微斗数」图标拖到「Applications」文件夹上。
+<figure><div class="dmg"><div class="app"><i></i>紫微斗数</div><div class="arrow">→</div><div class="folder"><i></i>Applications</div></div><figcaption>示意图：把左边的图标拖到右边的文件夹</figcaption></figure>
+</li>
+<li><strong>第一次打开</strong>：在「启动台」或「访达 › 应用程序」里双击「紫微斗数」。系统会提示无法验证，按你的系统版本操作：
+<h3>macOS 15（Sequoia）及以上</h3>
+<div class="two">
+<figure><div class="mac-dialog"><div class="icon"></div><b>“紫微斗数”未打开</b><p>Apple 无法验证“紫微斗数”是否包含可能危害 Mac 安全或泄漏隐私的恶意软件。</p><span class="btn primary hl">完成</span><span class="btn">移到废纸篓</span></div><figcaption>① 点「完成」（不要点移到废纸篓）</figcaption></figure>
+<figure><div class="settings"><div class="side"><div>通用</div><div>外观</div><div class="on">隐私与安全性</div><div>桌面与程序坞</div></div><div class="body"><div style="color:var(--ink-3)">安全性</div><div class="row"><span>已阻止“紫微斗数”以保护 Mac。</span><span class="mini hl">仍要打开</span></div></div></div><figcaption>② 打开「系统设置 › 隐私与安全性」，往下翻到「安全性」，点「仍要打开」</figcaption></figure>
+</div>
+<p>③ 再弹出的窗口里点「仍要打开」，输入开机密码（或按指纹）。软件就会启动，以后直接双击即可。</p>
+<h3>macOS 12 – 14</h3>
+<figure><div class="menu"><div class="on hl">打开</div><div>在新标签页中打开</div><hr><div>移到废纸篓</div><hr><div>显示简介</div><div>显示包内容</div></div><figcaption>在「应用程序」里按住 Control 键点按「紫微斗数」（或用两根手指点触控板），选「打开」，在弹出的窗口里再点「打开」</figcaption></figure>
+</li>
+<li><strong>钥匙串提示</strong>：保存 AI 设置或升级新版本后，可能会弹出「紫微斗数想要使用钥匙串中的“紫微斗数 Safe Storage”」，输入开机密码后点「始终允许」。这是在读取加密保存的 API Key。</li>
+</ol>
+
+<div class="note"><strong>提示「已损坏，无法打开」？</strong>这通常是下载方式（例如通过聊天软件传输）给文件加了隔离标记。打开「终端」（启动台 › 其他 › 终端），粘贴下面这行后按回车，然后再打开软件：<br><code>xattr -dr com.apple.quarantine /Applications/紫微斗数.app</code></div>
+
+<h2 id="win">Windows 安装</h2>
+<ol class="steps">
+<li><strong>下载</strong>：如果浏览器提示「通常不会下载此文件」或「可能有害」，点文件旁的「…」或箭头，选「保留」，再选「仍然保留」。</li>
+<li><strong>运行安装程序</strong>：双击 <code>ziwei-0.1.0-win-x64-setup.exe</code>。出现蓝色的「Windows 已保护你的电脑」时：
+<div class="two">
+<figure><div class="smartscreen"><b>Windows 已保护你的电脑</b>Microsoft Defender SmartScreen 阻止了无法识别的应用启动。运行此应用可能会导致你的电脑存在风险。<br><br><u class="hl">更多信息</u><div class="foot"><span>不运行</span></div></div><figcaption>① 点左下方的「更多信息」</figcaption></figure>
+<figure><div class="smartscreen"><b>Windows 已保护你的电脑</b>应用：ziwei-0.1.0-win-x64-setup.exe<br>发布者：未知发布者<br><br><div class="foot"><span class="hl">仍要运行</span><span>不运行</span></div></div><figcaption>② 点「仍要运行」</figcaption></figure>
+</div>
+</li>
+<li><strong>安装选项</strong>：选择安装位置（默认即可），点「安装」，完成后点「完成」。桌面和开始菜单会出现「紫微斗数」快捷方式。</li>
+<li><strong>杀毒软件拦截</strong>：360、火绒、电脑管家等可能提示风险，选择「信任」或「允许运行」，必要时把安装目录加入信任列表。</li>
+</ol>
+
+<h2 id="first">第一次使用</h2>
+<ol class="steps">
+<li><strong>设置 AI</strong>：第一次启动会打开设置页。选 AI 服务商（推荐 DeepSeek），粘贴你的 API Key，点「测试连接」，成功后保存。也可以先点「先跳过，只排盘」，以后在顶栏「设置」里再填。
+<ul>
+<li>DeepSeek：到 platform.deepseek.com 注册并充值，在「API keys」里创建 Key。</li>
+<li>硅基流动：到 cloud.siliconflow.cn 注册，在「API 密钥」里创建 Key。</li>
+</ul>
+AI 费用由你直接付给服务商，按用量计费。</li>
+<li><strong>书库</strong>：AI 解读默认查随软件附带的内置书库。想用自己的书，到「古籍库」页面的「书库」里新建书库、导入 PDF，并勾选它。</li>
+<li><strong>开始排盘</strong>：在首页填出生日期、时间和性别，排出命盘后就可以向 AI 提问。全部功能免费。</li>
+</ol>
+<p>软件里顶栏的「帮助」页还有导入书、数据备份、升级卸载等说明。</p>
+
+<h2 id="faq">遇到问题</h2>
+<ul>
+<li><strong>打开后一直显示「正在启动」或弹出「本地服务启动失败」</strong>：点「重试」；还不行就点「打开日志」，把日志附在问题反馈里。</li>
+<li><strong>AI 解读提示 Key 错误、余额不足或网络异常</strong>：检查 Key 是否复制完整、服务商账户余额、网络能否访问该服务商。</li>
+<li><strong>卸载</strong>：Mac 把「应用程序」里的紫微斗数拖到废纸篓；Windows 在「设置 › 应用」里卸载。命盘等数据保留在本机，重装后还在。</li>
+</ul>
+</main>
+</body>
+</html>

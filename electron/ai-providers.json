@@ -1,0 +1,26 @@
+{
+  "deepseek": {
+    "name": "DeepSeek",
+    "baseUrl": "https://api.deepseek.com",
+    "defaultModel": "deepseek-flash",
+    "models": ["deepseek-flash"],
+    "options": { "thinking": { "type": "disabled" } },
+    "keyUrl": "https://platform.deepseek.com/api_keys"
+  },
+  "siliconflow": {
+    "name": "硅基流动",
+    "baseUrl": "https://api.siliconflow.cn/v1",
+    "defaultModel": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "models": ["deepseek-ai/DeepSeek-V4.1-Flash"],
+    "options": { "enable_thinking": false },
+    "keyUrl": "https://cloud.siliconflow.cn/account/ak"
+  },
+  "custom": {
+    "name": "其他（OpenAI 兼容）",
+    "baseUrl": "",
+    "defaultModel": "",
+    "models": [],
+    "options": {},
+    "keyUrl": ""
+  }
+}

@@ -1,0 +1,72 @@
+/* 出处链接与古籍引文块（命盘页、合盘页共用） */
+
+.cite {
+  display: inline;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--zhu-deep);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cite:hover { color: var(--zhu); }
+
+.dialog {
+  width: min(960px, 95vw);
+  max-width: none;
+  padding: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink-1);
+}
+.dialog::backdrop { background: color-mix(in oklch, var(--ink-1) 55%, transparent); }
+.dialogHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 16px;
+  font-weight: 700;
+}
+.close {
+  padding: 0 8px;
+  background: none;
+  border: 0;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.close:hover { color: var(--ink-1); }
+.dialogBody { max-height: 75vh; overflow: auto; padding: 16px; font-size: 16px; line-height: 1.85; }
+.dialogCap { margin-bottom: 8px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.excerpt {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  white-space: pre-wrap;
+}
+.frame { display: block; margin-top: 12px; width: 100%; height: 65vh; border: 0; background: var(--paper); }
+
+.sources { margin-top: 18px; font-size: 15px; line-height: 1.8; }
+.sourcesHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.sourcesHead b { color: var(--ink-2); font-weight: 600; }
+.sourcesList { list-style: none; margin: 6px 0 0; padding: 0; }
+.sourcesList li { padding: 3px 0; }
+.sourcesList li + li { border-top: 1px dashed var(--rule); }
+.sourcesEmpty { margin: 6px 0 0; color: var(--ink-2); }

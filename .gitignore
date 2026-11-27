@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+dist/
+*.tsbuildinfo
+.DS_Store
+/.local-library/
+node_modules
+dist-desktop/
+/library/
+
+# 授权服务：本地密钥和 wrangler 本地状态
+license-server/.dev.vars
+license-server/.wrangler/
+license-server/.prod.vars

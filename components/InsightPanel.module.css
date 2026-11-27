@@ -1,0 +1,179 @@
+/* 解读区：像书页旁注——下划线 tab、宋体正文、朱批、引文块、追问框 */
+
+.reading {
+  min-width: 0;
+  border-top: 3px solid var(--ink-1);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: 12px;
+}
+.head h2 { margin: 0; font-size: 20px; font-weight: 700; }
+.head span { font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+
+.tabs { margin-top: 6px; }
+
+/* 对话切换：下拉选对话，右边新对话、删除 */
+.chatBar { display: flex; gap: 8px; align-items: center; margin-top: 10px; font-family: var(--sans); font-size: 13px; }
+.chatBar select {
+  flex: 1; min-width: 0; padding: 4px 6px; font: inherit; color: var(--ink-1);
+  background: var(--paper); border: 1px solid var(--rule-strong);
+}
+.chatBar button {
+  flex: none; padding: 4px 10px; font: inherit; color: var(--ink-1); cursor: pointer;
+  background: none; border: 1px solid var(--rule-strong);
+}
+.chatBar button:hover:not(:disabled) { color: var(--zhu-deep); border-color: var(--zhu-deep); }
+.chatBar button:disabled, .chatBar select:disabled { cursor: default; opacity: 0.5; }
+.tabs > button:disabled { cursor: progress; }
+.tabs > button:disabled:not([aria-selected="true"]) { color: var(--ink-3); }
+
+/* 正文滚动区：桌面跟着视口高度，整栏（标题、对话切换、正文、输入框）刚好放进一屏；手机限制一屏多一点 */
+.pane {
+  position: relative; /* 新提问滚到顶部时按它计算位置 */
+  height: calc(100vh - 330px);
+  min-height: 360px;
+  overflow-y: auto;
+  padding: 18px 8px 8px 0;
+}
+
+.empty {
+  margin: 0;
+  padding: 24px 0;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+
+.msg + .msg, .ask + .msg, .msg + .ask { margin-top: 20px; }
+.msg + .msg { padding-top: 18px; border-top: 1px dashed var(--rule); }
+
+.ask { margin: 0; }
+.askLbl {
+  display: inline-block;
+  margin-right: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.ai { color: var(--ink-1); }
+.sec {
+  margin: 20px 0 0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.sec::before { content: "【"; color: var(--zhu); font-weight: 400; }
+.sec::after { content: "】"; color: var(--zhu); font-weight: 400; }
+.ai > .sec:first-child { margin-top: 0; }
+.t {
+  margin: 8px 0 0;
+  font-size: 16.5px;
+  line-height: 1.95;
+  text-align: justify;
+}
+.t b { font-weight: 700; }
+
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--zhu);
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink { to { visibility: hidden; } }
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.progress input {
+  flex: 1;
+  height: 4px;
+  accent-color: var(--zhu);
+  cursor: pointer;
+}
+.progress input:disabled { opacity: 0.4; cursor: not-allowed; }
+.pct { width: 3em; text-align: right; font-variant-numeric: tabular-nums; }
+
+.askBox {
+  margin-top: 8px;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+}
+.askBox:focus-within { border-color: var(--ink-1); }
+.askBox textarea {
+  display: block;
+  width: 100%;
+  height: 70px;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  resize: none;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-1);
+  outline: none;
+}
+.askBox textarea::placeholder { color: var(--ink-3); }
+.askBox textarea:disabled { opacity: 0.6; }
+.askBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 8px 14px;
+  border-top: 1px solid var(--rule);
+}
+.eg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.eg button {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px dotted var(--ink-3);
+  color: var(--ink-2);
+  font: inherit;
+  cursor: pointer;
+}
+.eg button:hover { color: var(--zhu-deep); }
+.send {
+  flex: none;
+  min-height: 36px;
+  padding: 0 20px;
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+@media (max-width: 1080px) {
+  .pane { height: auto; max-height: 75vh; min-height: 240px; }
+}
+
+@media (max-width: 760px) {
+  .tabs { gap: 18px; }
+  .sec { font-size: 18px; }
+  .t { font-size: 16px; }
+  .askBar { flex-direction: column; align-items: stretch; }
+  .send { align-self: flex-end; }
+}

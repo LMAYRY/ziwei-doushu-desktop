@@ -1,0 +1,142 @@
+/* 命盘页版式：命主信息条 + 「原文（命盘）/ 注（解读）」双栏 */
+
+.page { min-height: 100vh; background: var(--paper); }
+
+.restoring {
+  padding: 64px 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+/* ── 命主信息 ───────────────────────────────── */
+.info { padding: 22px 0 18px; border-bottom: 1px solid var(--rule); }
+.infoRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.who h1 { font-size: 24px; font-weight: 700; line-height: 1.3; margin: 0; }
+.who p { margin: 4px 0 0; font-family: var(--sans); font-size: 14px; color: var(--ink-2); }
+.who p span + span::before { content: "　"; }
+.right { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.actions { display: flex; gap: 16px; font-family: var(--sans); font-size: 13px; }
+.textBtn {
+  background: none;
+  border: 0;
+  padding: 0 0 1px;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  font: inherit;
+}
+.textBtn:hover { color: var(--zhu-deep); border-bottom-color: var(--zhu); }
+
+.facts {
+  display: flex;
+  margin: 16px 0 0;
+  border-top: 1px solid var(--ink-1);
+  border-bottom: 1px solid var(--rule);
+}
+.facts > div {
+  padding: 8px 18px 8px 0;
+  margin-right: 18px;
+  border-right: 1px solid var(--rule);
+}
+.facts > div:last-child { border-right: 0; margin-right: 0; }
+.facts dt { font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.facts dd { margin: 0; font-size: 16px; font-weight: 600; white-space: nowrap; }
+.pillars { display: flex; gap: 14px; }
+.pillars span { display: flex; flex-direction: column; align-items: center; line-height: 1.25; }
+.pillars i { font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--ink-3); font-weight: 400; }
+.now dd { color: var(--zhu-deep); }
+
+/* ── 主体 ───────────────────────────────────── */
+.main {
+  display: grid;
+  /* 解读栏至少 460px、约占四成，命盘随之缩小（窄窗口下面改成上下排列） */
+  grid-template-columns: minmax(0, 1fr) minmax(460px, 42%);
+  gap: 32px;
+  padding-top: 24px;
+  padding-bottom: 48px;
+  align-items: start;
+}
+
+/* ── 历史对话 ───────────────────────────────── */
+.history {
+  margin: 16px 0 0;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+  padding: 14px 16px;
+}
+.historyHead { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.historyHead h2 { margin: 0; font-size: 18px; font-weight: 700; }
+.historyNote { margin: 2px 0 0; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.historyList { list-style: none; margin: 10px 0 0; padding: 0; }
+.historyList li { display: flex; align-items: center; gap: 12px; }
+.historyList li + li { border-top: 1px solid var(--rule); }
+.historyItem {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 0;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink-1);
+  font: inherit;
+}
+.historyItem:hover b { color: var(--zhu-deep); }
+.historyItem b { display: block; font-size: 15px; font-weight: 600; }
+.historyItem span { display: block; margin-top: 2px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.historyEmpty { margin: 10px 0 0; font-size: 15px; color: var(--ink-2); }
+
+/* ── 起盘表单页 ─────────────────────────────── */
+.formPage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 64px;
+  padding-top: 48px;
+  padding-bottom: 64px;
+  align-items: start;
+}
+.intro h1 { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.35; }
+.lead { margin: 14px 0 0; font-size: 17px; line-height: 1.9; color: var(--ink-2); max-width: 30em; }
+.rules { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--ink-1); max-width: 34em; }
+.rules li {
+  display: grid;
+  grid-template-columns: 4.5em 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.rules b { font-weight: 700; }
+.rules span { color: var(--ink-2); }
+.introActions { margin-top: 24px; }
+.formCol { min-width: 0; }
+
+@media (max-width: 1080px) {
+  .main { grid-template-columns: 1fr; gap: 28px; }
+  .formPage { grid-template-columns: 1fr; gap: 32px; padding-top: 28px; }
+}
+
+@media (max-width: 760px) {
+  .info { padding: 14px 0 12px; }
+  .infoRow { flex-direction: column; align-items: stretch; gap: 12px; }
+  .who h1 { font-size: 20px; }
+  .who p { font-size: 13px; }
+  .right { align-items: stretch; }
+  .actions { justify-content: flex-end; }
+  .facts { flex-wrap: wrap; margin-top: 12px; }
+  .facts > div { padding: 6px 10px 6px 0; margin-right: 10px; }
+  .facts > .pl { flex-basis: 100%; border-right: 0; border-bottom: 1px solid var(--rule); margin-right: 0; }
+  .facts dd { font-size: 15px; }
+  .main { gap: 20px; padding-top: 14px; padding-bottom: 32px; }
+  .intro h1 { font-size: 24px; }
+  .lead { font-size: 16px; }
+  .rules li { grid-template-columns: 1fr; gap: 0; }
+}

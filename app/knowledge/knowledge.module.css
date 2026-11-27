@@ -1,0 +1,107 @@
+/* 星曜知识 · 纸本 */
+
+.head { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--sans); font-size: 14px; color: var(--ink-3); margin-bottom: 16px; }
+.eyebrow b { color: var(--zhu); font-weight: 500; }
+.h1 { font-size: 42px; line-height: 1.3; font-weight: 700; text-wrap: balance; }
+.lede { margin-top: 20px; max-width: 34em; font-size: 18px; line-height: 1.9; color: var(--ink-2); }
+.lede strong { color: var(--ink-1); font-weight: 600; }
+
+/* 十四主星：界栏竖行 */
+.cols { margin-top: 36px; display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); border: 2px solid var(--ink-1); direction: rtl; }
+.cols a {
+  direction: ltr; writing-mode: vertical-rl; text-orientation: upright;
+  display: flex; align-items: center; justify-content: flex-start;
+  padding: 16px 0; height: 108px; font-size: 22px; font-weight: 600; letter-spacing: 0.2em;
+  border-left: 1px solid var(--rule-strong);
+}
+.cols a:last-child { border-left: 0; }
+.cols a:hover { color: var(--zhu-deep); background: var(--paper-2); }
+
+/* 节 */
+.sec { padding: 56px 0; }
+.secGrid { display: grid; grid-template-columns: 120px 1fr; gap: 48px; }
+.juan {
+  writing-mode: vertical-rl; font-size: 28px; font-weight: 700; letter-spacing: 0.2em; line-height: 1;
+  justify-self: start; align-self: start; padding-left: 20px; border-left: 1px solid var(--rule); position: relative;
+}
+.juan::before {
+  content: ""; position: absolute; left: -7px; top: -22px; width: 13px; height: 14px; background: var(--zhu);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 62%, 0 100%);
+}
+.juan small { font-size: 14px; font-weight: 400; color: var(--ink-3); letter-spacing: 0.1em; margin-top: 18px; }
+
+.stars { list-style: none; padding: 0; margin: 0; border-top: 2px solid var(--ink-1); border-bottom: 1px solid var(--ink-1); }
+.stars > li { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-top: 1px solid var(--rule); scroll-margin-top: 24px; }
+.stars > li:first-child { border-top: 0; }
+.starName { font-size: 26px; font-weight: 700; line-height: 1.3; }
+.starName a:hover { color: var(--zhu-deep); }
+.starBrief { font-size: 16px; line-height: 1.85; color: var(--ink-2); max-width: 44em; }
+
+/* 宫位入口：界栏格 */
+.grid { margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.grid a { display: block; padding: 9px 12px; font-size: 15px; line-height: 1.5; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.grid a small { display: block; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.grid a:hover { background: var(--paper-2); color: var(--zhu-deep); }
+.grid a[aria-current="page"] { background: var(--ink-1); color: var(--on-ink); }
+.grid a[aria-current="page"] small { color: var(--on-ink); }
+
+/* 专题页 */
+.crumb { font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.crumb a { color: var(--ink-2); }
+.crumb a:hover { color: var(--zhu-deep); }
+.crumb span { margin: 0 8px; }
+
+.article { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; padding-top: 48px; padding-bottom: 56px; }
+.dingdiao { margin-top: 28px; padding: 20px 0; border-top: 2px solid var(--ink-1); border-bottom: 1px solid var(--ink-1); font-size: 22px; line-height: 1.7; font-weight: 600; }
+.dingdiao b { display: block; font-family: var(--sans); font-size: 12px; color: var(--zhu); font-weight: 500; margin-bottom: 6px; }
+
+.block { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+.blockLabel { font-family: var(--sans); font-size: 14px; color: var(--ink-3); padding-top: 6px; }
+.blockLabel::before { content: ""; display: block; width: 18px; border-top: 2px solid var(--zhu); margin-bottom: 8px; }
+.body { max-width: 36em; font-size: 18px; line-height: 1.95; }
+.body p + p { margin-top: 14px; }
+.source { max-width: 36em; font-size: 16px; line-height: 1.95; color: var(--ink-1); background: var(--paper-2); border: 1px solid var(--rule); padding: 16px 20px; }
+.source p + p { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule); }
+
+.aside { display: flex; flex-direction: column; gap: 28px; align-self: start; position: sticky; top: 24px; }
+.cta { border: 3px solid var(--ink-1); padding: 4px; }
+.ctaIn { border: 1px solid var(--ink-1); padding: 20px; }
+.ctaIn h2 { font-size: 18px; font-weight: 700; line-height: 1.5; }
+.ctaIn p { margin-top: 6px; font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+.ctaIn a { margin-top: 16px; width: 100%; }
+.asideTitle { font-size: 16px; font-weight: 700; padding-bottom: 8px; border-bottom: 1px solid var(--ink-1); }
+.asideNote { font-family: var(--sans); font-size: 13px; line-height: 1.7; color: var(--ink-3); }
+.asideNote a { color: var(--ink-1); border-bottom: 1px solid var(--rule-strong); }
+.asideNote a:hover { color: var(--zhu-deep); border-bottom-color: var(--zhu); }
+
+.related { padding: 40px 0 8px; border-top: 1px solid var(--rule); }
+.related h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.related + .related { border-top: 0; padding-top: 24px; }
+
+@media (max-width: 1000px) {
+  .article { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .aside { position: static; }
+  .cols { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .cols a:nth-child(7) { border-left: 0; }
+  .cols a:nth-child(-n+7) { border-bottom: 1px solid var(--rule-strong); }
+}
+@media (max-width: 760px) {
+  .head { padding: 36px 0 40px; }
+  .h1 { font-size: 30px; }
+  .lede { font-size: 16px; margin-top: 14px; }
+  .cols a { height: 104px; font-size: 18px; letter-spacing: 0.1em; justify-content: center; }
+  .sec { padding: 40px 0; }
+  .secGrid { grid-template-columns: 1fr; gap: 16px; }
+  .juan { writing-mode: horizontal-tb; font-size: 15px; letter-spacing: 0.1em; padding: 0 0 0 12px; border-left: 3px solid var(--zhu); font-weight: 600; color: var(--ink-2); }
+  .juan::before, .juan small { display: none; }
+  .stars > li { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }
+  .starName { font-size: 22px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .article { padding-top: 32px; padding-bottom: 40px; }
+  .dingdiao { font-size: 19px; }
+  .block { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
+  .blockLabel { padding-top: 0; display: flex; align-items: center; gap: 8px; }
+  .blockLabel::before { margin: 0; }
+  .body { font-size: 17px; }
+}

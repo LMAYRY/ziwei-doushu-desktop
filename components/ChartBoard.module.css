@@ -1,0 +1,300 @@
+/* 命盘：外粗内细的双边 + 界栏宫格（v2 纸本设计）。颜色只用 globals.css 的变量。 */
+
+.board {
+  border: 3px solid var(--ink-1);
+  padding: 3px;
+  background: var(--paper);
+  user-select: none;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(176px, auto));
+  border: 1px solid var(--ink-1);
+}
+
+/* ── 宫格 ───────────────────────────────────── */
+.cell {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 9px 10px 8px;
+  border-right: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  background: var(--paper);
+  color: var(--ink-1);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+.c3 { border-right: 0; }
+.r3 { border-bottom: 0; }
+.cell:hover { background: var(--paper-2); }
+.cur, .cur:hover { background: var(--paper-3); }
+.tri, .tri:hover { background: var(--zhu-wash); }
+.tri::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid var(--zhu);
+  border-right: 10px solid transparent;
+}
+.sel { box-shadow: inset 0 0 0 2px var(--zhu); }
+.cell:focus-visible { box-shadow: inset 0 0 0 2px var(--ink-1); }
+.sel:focus-visible { box-shadow: inset 0 0 0 2px var(--zhu), inset 0 0 0 4px var(--paper); }
+
+.majors { display: flex; flex-direction: column; gap: 2px; }
+.mj {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.empty {
+  font-size: 15px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.empty small {
+  font-family: var(--sans);
+  font-size: 12px;
+  margin-left: 4px;
+}
+.br { font-family: var(--sans); font-size: 12px; font-weight: 400; }
+.b1 { color: var(--ink-1); }
+.b2 { color: var(--ink-2); }
+.b3 { color: var(--ink-3); }
+.clickable { cursor: pointer; }
+.clickable:hover { color: var(--zhu-deep); }
+
+.minors, .shas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 7px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.minors { margin-top: 6px; color: var(--ink-1); }
+.mn { color: var(--ink-2); }
+.shas {
+  margin-top: 4px;
+  padding-top: 3px;
+  border-top: 1px dashed var(--rule);
+  color: var(--ink-2);
+}
+.st { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.st :global(.hua) { min-width: 16px; height: 16px; font-size: 11px; }
+.more { display: none; }
+
+.annual {
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--zhu-deep);
+}
+.annual b { font-weight: 600; }
+.annual span { color: var(--ink-2); }
+
+.foot {
+  margin-top: auto;
+  padding-top: 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+}
+.pname {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.ming {
+  background: var(--zhu);
+  color: var(--on-zhu);
+  padding: 0 5px;
+  border-radius: 1px;
+}
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 3px;
+  border: 1px solid var(--zhu);
+  color: var(--zhu-deep);
+  border-radius: 1px;
+}
+.tagDx { border-color: var(--ink-1); color: var(--ink-1); }
+.gz { text-align: right; line-height: 1.25; }
+.gz b { display: block; font-size: 14px; font-weight: 600; }
+.gz i { font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.cur .gz i { color: var(--ink-1); font-weight: 600; }
+
+/* ── 盘心 ───────────────────────────────────── */
+.heart {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 26px;
+  border-right: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  text-align: center;
+}
+/* 连线画在信息框之上；信息框内每行文字自带纸色底，线只在字的空隙里穿过，不再被整块遮住 */
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+.lines line { stroke: var(--zhu); stroke-width: 1.25; opacity: 0.55; }
+.lines circle { fill: var(--zhu); }
+
+.hc {
+  position: relative;
+  max-width: 100%;
+  padding: 4px 0;
+}
+.ko {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--paper);
+}
+.hCap {
+  display: inline-block;
+  padding: 0 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.hName {
+  display: table;
+  margin: 0 auto;
+  padding: 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.hName small { font-size: 16px; font-weight: 500; color: var(--ink-2); margin-left: 6px; }
+.sfsz {
+  display: table;
+  margin: 8px auto 0;
+  padding: 2px 10px;
+  font-size: 14px;
+  line-height: 1.75;
+  text-align: left;
+}
+.sfsz > div { display: grid; grid-template-columns: 40px 1fr; gap: 6px; }
+.sfsz i { font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--ink-3); padding-top: 2px; }
+.sihua {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 12px;
+  margin: 10px auto 0;
+  padding: 6px 10px;
+  max-width: 340px;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+}
+.sihua + .sihua { margin-top: 0; }
+.sihua > span { display: inline-flex; align-items: center; gap: 4px; }
+.lbl { font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.legend {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 0 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* ── 手机端宫详情（桌面隐藏）───────────────── */
+.detail { display: none; }
+
+@media (max-width: 760px) {
+  .board { border-width: 2px; padding: 2px; }
+  .grid { grid-template-rows: repeat(4, minmax(128px, auto)); }
+  .cell { padding: 5px 4px 4px; }
+  .mj { font-size: 15px; gap: 2px; line-height: 1.25; }
+  .br { font-size: 11px; }
+  .mj :global(.hua) { min-width: 16px; height: 16px; font-size: 11px; }
+  .empty { font-size: 13px; }
+  .empty small { display: none; }
+  .minors, .shas { font-size: 12px; gap: 0 4px; margin-top: 3px; line-height: 1.45; }
+  .shas { padding-top: 1px; }
+  .extra { display: none; }
+  .more { display: inline; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+  .st :global(.hua) { min-width: 14px; height: 14px; font-size: 10px; }
+  .annual { font-size: 11px; margin-top: 3px; }
+  .annual span { display: none; }
+  .foot { padding-top: 3px; flex-wrap: wrap; }
+  .pname { font-size: 12px; gap: 2px; }
+  .ming { padding: 0 3px; }
+  .tag { font-size: 11px; padding: 1px 2px; }
+  .gz b { display: inline; font-size: 11px; font-weight: 500; }
+  .gz i { font-size: 11px; margin-left: 2px; }
+
+  .heart { padding: 6px 4px; }
+  .hc { padding: 6px 4px; }
+  .hCap { font-size: 11px; padding: 0 2px; }
+  .hName { font-size: 19px; padding: 0 4px; }
+  .hName small { font-size: 12px; margin-left: 2px; }
+  .sfsz { font-size: 12px; margin-top: 4px; line-height: 1.55; padding: 2px 4px; }
+  .sfsz > div { grid-template-columns: auto 1fr; gap: 4px; }
+  .sfsz i { display: none; }
+  .sihua, .legend { display: none; }
+
+  .detail {
+    display: block;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--rule-strong);
+    background: var(--paper);
+  }
+  .detail h4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .detail h4 span { font-family: var(--sans); font-size: 12px; color: var(--ink-3); font-weight: 400; text-align: right; }
+  .detail dl { display: grid; grid-template-columns: 44px 1fr; gap: 6px 8px; margin: 8px 0 0; font-size: 15px; }
+  .detail dt { font-family: var(--sans); font-size: 12px; color: var(--ink-3); padding-top: 3px; }
+  .detail dd { margin: 0; display: flex; flex-wrap: wrap; gap: 2px 12px; }
+  .detail dd > span { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+  .detail dd i { font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+  .detailHua {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .detailHua > span { display: inline-flex; align-items: center; gap: 4px; }
+  .detailHint { margin-top: 8px; font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+}

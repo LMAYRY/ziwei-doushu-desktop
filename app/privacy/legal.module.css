@@ -1,0 +1,23 @@
+/* 隐私政策 / 服务条款：单栏条文，条目号用朱色汉字 */
+.head { padding: 48px 0 32px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-family: var(--sans); font-size: 14px; color: var(--ink-3); margin-bottom: 14px; }
+.h1 { font-size: 38px; line-height: 1.3; font-weight: 700; }
+.updated { margin-top: 10px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+
+.doc { max-width: 40em; padding: 24px 0 64px; font-size: 17px; line-height: 1.95; color: var(--ink-1); }
+.doc h2 { display: flex; align-items: baseline; gap: 14px; margin-top: 40px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); font-size: 20px; font-weight: 700; }
+.doc h2 span { flex: none; min-width: 1.4em; color: var(--zhu); font-weight: 700; }
+.doc p { margin-top: 12px; }
+.doc ul { margin-top: 10px; padding-left: 0; list-style: none; }
+.doc li { position: relative; padding-left: 1.4em; margin-top: 6px; }
+.doc li::before { content: ""; position: absolute; left: 0.3em; top: 0.95em; width: 6px; height: 1px; background: var(--ink-3); }
+.doc strong { font-weight: 700; }
+.notice { margin-top: 14px; padding: 16px 20px; border-left: 2px solid var(--zhu); background: var(--zhu-wash); color: var(--ink-1); font-size: 16px; }
+.notice + .notice { margin-top: 0; }
+
+@media (max-width: 760px) {
+  .head { padding: 32px 0 24px; }
+  .h1 { font-size: 28px; }
+  .doc { font-size: 16px; }
+  .doc h2 { font-size: 18px; margin-top: 32px; }
+}
